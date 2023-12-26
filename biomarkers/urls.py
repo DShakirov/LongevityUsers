@@ -1,0 +1,52 @@
+from django.urls import path
+
+app_name = 'biomarkers'
+from .views import(
+    CreateDiabetesView,
+    UpdateDiabetesView,
+    CreateStrokeView,
+    UpdateStrokeView,
+    CreateLungCancerView,
+    UpdateLungCancerView,
+    CreateMalariaView,
+    UpdateMalariaView,
+    CreateHeartFailureView,
+    UpdateHeartFailureView,
+    CreateCVDView,
+    UpdateCVDView,
+    CreateHIVView,
+    UpdateHIVView,
+    CreateCOPDView,
+    UpdateCOPDView,
+    CreateLeukemiaView,
+    UpdateLeukemiaView,
+    CreatePneumoniaView,
+    UpdatePneumoniaView,
+    CreateMelanomaView,
+    UpdateMelanomaView
+)
+
+urlpatterns = [
+    path("create_diabetes/", CreateDiabetesView.as_view(), name="create_diabetes"),
+    path("diabetes/<str:cognito_username>/", UpdateDiabetesView.as_view(), name="diabetes"),
+    path("create_stroke/", CreateStrokeView.as_view(), name="create_stroke"),
+    path("stroke/<str:cognito_username>/", UpdateStrokeView.as_view(), name="stroke"),
+    path("create_lung_cancer/", CreateLungCancerView.as_view(), name="create_lung_cancer"),
+    path("lung_cancer/<str:cognito_username>/", UpdateLungCancerView.as_view(), name="lung_cancer"),
+    path("create_malaria/", CreateMalariaView.as_view(), name="create_malaria"),
+    path("malaria/<str:cognito_username>/", UpdateMalariaView.as_view(), name="malaria"),
+    path("create_heart_failure/", CreateHeartFailureView.as_view(), name="create_heart_failure"),
+    path("heart_failure/<str:cognito_username>/", UpdateHeartFailureView.as_view(), name="heart_failure"),
+    path("create_cvd/", CreateCVDView.as_view(), name="create_cvd"),
+    path("cvd/<str:cognito_username>/", UpdateCVDView.as_view(), name="cvd"),
+    path("create_hiv/", CreateHIVView.as_view(), name="create_hiv"),
+    path("hiv/<str:cognito_username>/", UpdateHIVView.as_view(), name="hiv"),
+    path("create_copd/", CreateCOPDView.as_view(), name="create_copd"),
+    path("copd/<str:cognito_username>/", UpdateCOPDView.as_view(), name="copd"),
+    path("create_leukemia/", CreateLeukemiaView.as_view(), name="create_leukemia"),
+    path("leukemia/<str:cognito_username>/", UpdateLeukemiaView.as_view(), name="leukemia"),
+    path("create_pneumonia/", CreatePneumoniaView.as_view(), name="create_pneumonia"),
+    path("pneumonia/<str:cognito_username>/", UpdatePneumoniaView.as_view(), name="pneumonia"),
+    path("create_melanoma/", CreateMelanomaView.as_view(), name="create_melanoma"),
+    path("melanoma/<str:cognito_username>/", UpdateMelanomaView.as_view(), name="melanoma"),
+    ]

@@ -1,0 +1,664 @@
+API DOCUMENTATION
+Middleware
+The application uses authorization via Cognito. Please include this header in each request:
+  "Authorization”: “ your_jwt_token"
+Models
+User:
+cognito_username	string($uuid)
+title: Cognito username
+readOnly: true
+password*	string
+title: Password
+maxLength: 128
+minLength: 1
+last_login	string($date-time)
+title: Last login
+x-nullable: true
+is_superuser	boolean
+title: Superuser status
+Designates that this user has all permissions without explicitly assigning them.
+username	string
+title: Email or phone
+pattern: ^[\w.@+-]+$
+maxLength: 255
+Required. 255 characters or fewer. Letters, digits and @/./+/-/_ only.
+image	string($uri)
+title: Image
+readOnly: true
+x-nullable: true
+first_name	string
+title: First name
+maxLength: 30
+x-nullable: true
+last_name	string
+title: Last name
+maxLength: 150
+x-nullable: true
+email	string($email)
+title: Email
+maxLength: 254
+is_doctor	boolean
+title: Is doctor
+is_used	boolean
+title: Is used
+phone_number	string
+title: Phone
+maxLength: 255
+is_staff	boolean
+title: Staff status
+Designates whether the user can log into this admin site.
+is_active	boolean
+title: Active
+Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+date_joined	string($date-time)
+title: Date joined
+date_locked	string($date-time)
+title: Date locked
+x-nullable: true
+user_device	integer
+title: User device
+x-nullable: true
+groups	[
+uniqueItems: true
+The groups this user belongs to. A user will get all permissions granted to each of their groups.
+integer
+The groups this user belongs to. A user will get all permissions granted to each of their groups.
+]
+user_permissions	[
+uniqueItems: true
+Specific permissions for this user.
+integer
+Specific permissions for this user.
+]
+COPD:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+AGE	integer
+title: Age
+x-nullable: true
+PackHistory	boolean
+title: PackHistory
+x-nullable: true
+MWT1	integer
+title: 1 minute walk test
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+MWT2	integer
+title: 2 minute walk test
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+FEV1	number
+title: Forced expiratory volume in 1 second
+x-nullable: true
+FVC	number
+title: Forced vital capacity
+x-nullable: true
+CAT	integer
+title: COPD Assessment Test
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+HAD	integer
+title: HAD
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+SGRQ	number
+title: St George's Respiratory Questionnaire
+x-nullable: true
+copd	boolean
+title: COPD
+x-nullable: true
+gender	integer
+title: Gender
+x-nullable: true
+smoking	boolean
+title: Smoker
+x-nullable: true
+user	string
+title: User
+x-nullable: true
+
+
+CVD:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+age	integer
+title: Age
+maximum: 110
+minimum: 13
+x-nullable: true
+blood_pressure_sys	integer
+title: Blood pressure systolic
+maximum: 300
+minimum: 70
+x-nullable: true
+blood_pressure_dia	integer
+title: Blood pressure diastolic
+maximum: 150
+minimum: 10
+x-nullable: true
+cholesterol_level	integer
+title: Cholesterol level
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+user	string
+title: User
+x-nullable: true
+
+Diabetes:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+glucose_level	integer
+title: Glucose level
+maximum: 150
+minimum: 5
+x-nullable: true
+blood_pressure_diastolic	integer
+title: Blood pressure diastolic
+maximum: 150
+minimum: 10
+x-nullable: true
+age	integer
+title: Age
+maximum: 110
+minimum: 13
+x-nullable: true
+bmi	number
+title: BMI
+x-nullable: true
+user	string
+title: User
+x-nullable: true
+
+Heart failure:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+age	integer
+title: Age
+maximum: 110
+minimum: 13
+x-nullable: true
+sex	string
+title: Sex
+x-nullable: trueEnum:
+Array [ 2 ]
+cp	integer
+title: Chest pain type
+maximum: 2147483647
+minimum: -2147483648
+trestbps	integer
+title: Resting blood pressure
+maximum: 2147483647
+minimum: -2147483648
+chol	integer
+title: Cholesterol
+maximum: 2147483647
+minimum: -2147483648
+fbs	integer
+title: Fasting blood sugar
+maximum: 2147483647
+minimum: -2147483648
+restecg	integer
+title: Resting ECG
+maximum: 2147483647
+minimum: -2147483648
+thalach	integer
+title: Max heart rate
+maximum: 2147483647
+minimum: -2147483648
+exang	boolean
+title: Exercise induced angina
+oldpeak	number
+title: ST depression
+slope	integer
+title: Slope of peak exercise ST segment
+maximum: 2147483647
+minimum: -2147483648
+ca	integer
+title: Number of major vessels colored by flourosopy
+maximum: 2147483647
+minimum: -2147483648
+thal	integer
+title: Thalassemia
+maximum: 2147483647
+minimum: -2147483648
+user	string
+title: User
+x-nullable: true
+
+HIV:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+hiv_diagnosis	integer
+title: HIV diagnoses
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+hiv_diagnosis_rate	number
+title: HIV diagnosis rate
+x-nullable: true
+concurrent_diagnosis	integer
+title: Concurrent diagnoses
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+patients_treatment_3_months	integer
+title: % linked to care within 3 months
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+aids_diagnosis_rate	number
+title: AIDS diagnosis rate
+x-nullable: true
+plwdhi_prevalence	number
+title: PLWDHI prevalence
+x-nullable: true
+viral_suppression	integer
+title: % viral suppression
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+deaths	integer
+title: Deaths
+maximum: 2147483647
+minimum: -2147483648
+x-nullable: true
+death_rate	number
+title: Death rate
+x-nullable: true
+hiv_death_rate	number
+title: HIV-related death rate
+x-nullable: true
+non_hiv_death_rate	number
+title: Non-HIV-related death rate
+x-nullable: true
+user	string
+title: User
+x-nullable: true
+Lung Cancer:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+sex	string
+title: Sex
+x-nullable: trueEnum:
+Array [ 2 ]
+age	integer
+title: Age
+maximum: 110
+minimum: 13
+x-nullable: true
+smoker	boolean
+title: Smoker
+x-nullable: true
+yellow_fingers	boolean
+title: Yellow fingers
+x-nullable: true
+anxiety	boolean
+title: Anxiety
+x-nullable: true
+peer_pressure	boolean
+title: Peer pressure
+x-nullable: true
+chronic_disease	boolean
+title: Chronic disease
+x-nullable: true
+fatigue	boolean
+title: Fatigue
+x-nullable: true
+allergy	boolean
+title: Allergy
+x-nullable: true
+wheezing	boolean
+title: Wheezing
+x-nullable: true
+alcohol_consumption	boolean
+title: Alcohol Consumption
+x-nullable: true
+coughing	boolean
+title: Coughing
+x-nullable: true
+shortness_of_breath	boolean
+title: Shortness of breath
+x-nullable: true
+hepatitis	boolean
+title: Hepatitis
+x-nullable: true
+chronic_fatigue	boolean
+title: Chronic fatigue
+x-nullable: true
+swallowing_difficulty	boolean
+title: Swallowing difficulty
+x-nullable: true
+chest_pain	boolean
+title: Chest pain
+x-nullable: true
+user	string
+title: User
+x-nullable: true
+Malaria:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+image	string($uri)
+title: Image
+readOnly: true
+user	string
+title: User
+x-nullable: true
+
+Stroke:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+glucose_level	integer
+title: Glucose level
+maximum: 150
+minimum: 5
+x-nullable: true
+bmi	number
+title: BMI
+x-nullable: true
+blood_pressure_systolic	integer
+title: Blood pressure systolic
+maximum: 300
+minimum: 70
+x-nullable: true
+blood_pressure_diastolic	integer
+title: Blood pressure diastolic
+maximum: 150
+minimum: 10
+x-nullable: true
+age	integer
+title: Age
+maximum: 110
+minimum: 13
+x-nullable: true
+user	string
+title: User
+x-nullable: true
+
+Lekemia:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+image	string($uri)
+title: Image
+readOnly: true
+user	string
+title: User
+x-nullable: true
+
+Pneuminia:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+image	string($uri)
+title: Image
+readOnly: true
+user	string
+title: User
+x-nullable: true
+
+Melanoma:
+id	integer
+title: ID
+readOnly: true
+result	boolean
+title: Result
+image	string($uri)
+title: Image
+readOnly: true
+user	string
+title: User
+x-nullable: true
+
+API ENDPOINTS
+POST /biomarkers/create_copd/
+{
+  "result": true,
+  "AGE": 2147483647,
+  "PackHistory": true,
+  "MWT1": 2147483647,
+  "MWT2": 2147483647,
+  "FEV1": 0,
+  "FVC": 0,
+  "CAT": 2147483647,
+  "HAD": 2147483647,
+  "SGRQ": 0,
+  "copd": true,
+  "gender": 2147483647,
+  "smoking": true,
+  "user": "string"
+}
+POST /biomarkers/create_cvd/
+{
+  "result": true,
+  "age": 110,
+  "blood_pressure_sys": 300,
+  "blood_pressure_dia": 150,
+  "cholesterol_level": 2147483647,
+  "user": "string"
+}
+POST /biomarkers/create_diabetes/
+{
+  "result": true,
+  "glucose_level": 150,
+  "blood_pressure_diastolic": 150,
+  "age": 110,
+  "bmi": 0,
+  "user": "string"
+}
+POST /biomarkers/create_heart_failure/
+{
+  "result": true,
+  "age": 110,
+  "sex": "MALE",
+  "cp": 2147483647,
+  "trestbps": 2147483647,
+  "chol": 2147483647,
+  "fbs": 2147483647,
+  "restecg": 2147483647,
+  "thalach": 2147483647,
+  "exang": true,
+  "oldpeak": 0,
+  "slope": 2147483647,
+  "ca": 2147483647,
+  "thal": 2147483647,
+  "user": "string"
+}
+POST /biomarkers/create_hiv/
+{
+  "result": true,
+  "hiv_diagnosis": 2147483647,
+  "hiv_diagnosis_rate": 0,
+  "concurrent_diagnosis": 2147483647,
+  "patients_treatment_3_months": 2147483647,
+  "aids_diagnosis_rate": 0,
+  "plwdhi_prevalence": 0,
+  "viral_suppression": 2147483647,
+  "deaths": 2147483647,
+  "death_rate": 0,
+  "hiv_death_rate": 0,
+  "non_hiv_death_rate": 0,
+  "user": "string"
+}
+POST /biomarkers/create_lung_cancer/
+{
+  "result": true,
+  "sex": "MALE",
+  "age": 110,
+  "smoker": true,
+  "yellow_fingers": true,
+  "anxiety": true,
+  "peer_pressure": true,
+  "chronic_disease": true,
+  "fatigue": true,
+  "allergy": true,
+  "wheezing": true,
+  "alcohol_consumption": true,
+  "coughing": true,
+  "shortness_of_breath": true,
+  "hepatitis": true,
+  "chronic_fatigue": true,
+  "swallowing_difficulty": true,
+  "chest_pain": true,
+  "user": "string"
+}
+POST /biomarkers/create_malaria/
+{
+  "result": true,
+  "user": "string",
+“image”: image
+}
+POST /biomarkers/create_stroke/
+{
+  "result": true,
+  "glucose_level": 150,
+  "bmi": 0,
+  "blood_pressure_systolic": 300,
+  "blood_pressure_diastolic": 150,
+  "age": 110,
+  "user": "string"
+}
+POST /biomarkers/create_leukemia/
+{
+  "result": true,
+  "user": "string",
+“image”: image
+}
+POST /biomarkers/create_pneumonia/
+{
+  "result": true,
+  "user": "string",
+“image”: image
+}
+POST /biomarkers/create_melanoma/
+{
+  "result": true,
+  "user": "string",
+“image”: image
+}
+GET/biomarkers/cvd/{cognito_username}/
+biomarkers_cvd_read
+PUT/biomarkers/cvd/{cognito_username}/
+biomarkers_cvd_update
+PATCH/biomarkers/cvd/{cognito_username}/
+biomarkers_cvd_partial_update
+DELETE/biomarkers/cvd/{cognito_username}/
+biomarkers_cvd_delete
+GET/biomarkers/diabetes/{cognito_username}/
+biomarkers_diabetes_read
+PUT/biomarkers/diabetes/{cognito_username}/
+biomarkers_diabetes_update
+PATCH/biomarkers/diabetes/{cognito_username}/
+biomarkers_diabetes_partial_update
+DELETE/biomarkers/diabetes/{cognito_username}/
+biomarkers_diabetes_delete
+GET/biomarkers/heart_failure/{cognito_username}/
+biomarkers_heart_failure_read
+PUT/biomarkers/heart_failure/{cognito_username}/
+biomarkers_heart_failure_update
+PATCH/biomarkers/heart_failure/{cognito_username}/
+biomarkers_heart_failure_partial_update
+DELETE/biomarkers/heart_failure/{cognito_username}/
+biomarkers_heart_failure_delete
+GET/biomarkers/hiv/{cognito_username}/
+biomarkers_hiv_read
+PUT/biomarkers/hiv/{cognito_username}/
+biomarkers_hiv_update
+PATCH/biomarkers/hiv/{cognito_username}/
+biomarkers_hiv_partial_update
+DELETE/biomarkers/hiv/{cognito_username}/
+biomarkers_hiv_delete
+GET/biomarkers/leukemia/{cognito_username}/
+biomarkers_leukemia_read
+PUT/biomarkers/leukemia/{cognito_username}/
+biomarkers_leukemia_update
+PATCH/biomarkers/leukemia/{cognito_username}/
+biomarkers_leukemia_partial_update
+DELETE/biomarkers/leukemia/{cognito_username}/
+biomarkers_leukemia_delete
+GET/biomarkers/lung_cancer/{cognito_username}/
+biomarkers_lung_cancer_read
+PUT/biomarkers/lung_cancer/{cognito_username}/
+biomarkers_lung_cancer_update
+PATCH/biomarkers/lung_cancer/{cognito_username}/
+biomarkers_lung_cancer_partial_update
+DELETE/biomarkers/lung_cancer/{cognito_username}/
+biomarkers_lung_cancer_delete
+GET/biomarkers/malaria/{cognito_username}/
+biomarkers_malaria_read
+PUT/biomarkers/malaria/{cognito_username}/
+biomarkers_malaria_update
+PATCH/biomarkers/malaria/{cognito_username}/
+biomarkers_malaria_partial_update
+DELETE/biomarkers/malaria/{cognito_username}/
+biomarkers_malaria_delete
+GET/biomarkers/melanoma/{cognito_username}/
+biomarkers_melanoma_read
+PUT/biomarkers/melanoma/{cognito_username}/
+biomarkers_melanoma_update
+PATCH/biomarkers/melanoma/{cognito_username}/
+biomarkers_melanoma_partial_update
+DELETE/biomarkers/melanoma/{cognito_username}/
+biomarkers_melanoma_delete
+GET/biomarkers/pneumonia/{cognito_username}/
+biomarkers_pneumonia_read
+PUT/biomarkers/pneumonia/{cognito_username}/
+biomarkers_pneumonia_update
+PATCH/biomarkers/pneumonia/{cognito_username}/
+biomarkers_pneumonia_partial_update
+DELETE/biomarkers/pneumonia/{cognito_username}/
+biomarkers_pneumonia_delete
+GET/biomarkers/stroke/{cognito_username}/
+biomarkers_stroke_read
+PUT/biomarkers/stroke/{cognito_username}/
+biomarkers_stroke_update
+PATCH/biomarkers/stroke/{cognito_username}/
+biomarkers_stroke_partial_update
+DELETE/biomarkers/stroke/{cognito_username}/
+biomarkers_stroke_delete
+DELETE/users/delete/{cognito_username}/
+users_delete_delete
+GET/users/user/{cognito_username}/
+users_user_read
+PUT/users/user/{cognito_username}/
+users_user_update
+PATCH/users/user/{cognito_username}/
+users_user_partial_update
+
+
+
+
+
+
